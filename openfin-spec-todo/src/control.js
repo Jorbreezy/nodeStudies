@@ -19,15 +19,13 @@ router.get("/:link", (req, res, next) => {
         if (err) {
             res.status(400).json({ msg: err });
         }
-
         res.status(200).json(data);
     });
 });
 
 //GETTING TODO LIST
-router.get('todo', (req, res) => {
-    //res.status(200).json({"todo": todos, length: todos.length});
-
+router.get('/todo/list', (req, res) => {
+    console.log("test");
     const collection = [];
 
     db.get("ids", (error, ids) => {
@@ -36,7 +34,7 @@ router.get('todo', (req, res) => {
                 collection.push(todos);
 
                 if (error) {
-                    res.status(404).json({ msg: error });
+                    res.status(404).json(error);
                 }
 
                 if (index === ids.length - 1) {

@@ -116,3 +116,7 @@ body {
   .addBtn:hover {
     background-color: #5089e5;
   }
+
+  #myInput{
+    outline: none;
+  }

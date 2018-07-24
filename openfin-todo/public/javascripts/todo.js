@@ -8,6 +8,7 @@ for (i = 0; i < myNodelist.length; i++) {
     span.appendChild(txt);
     myNodelist[i].appendChild(span);
 }
+
 // Hide Delete List
 var close = document.getElementsByClassName("close");
 var i;
@@ -17,6 +18,7 @@ for (i = 0; i < close.length; i++) {
         div.style.display = "none";
     }
 }
+
 // Make Checked
 var list = document.querySelector('ul');
 list.addEventListener('click', function (ev) {
@@ -51,25 +53,22 @@ function newElement() {
         }
     }
 
-    new Vue({
-        el: '#myDIV',
-        data: {
+    $.ajax({
+        url:"http://localhost:8080/api/create",
+        method:"POST",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
             title: inputValue,
             comment: "Im cool",
-            alias: inputValue,
-            completed: false
+            completed: false,
+            alias: $(".alias").val()
+        }),
+        success: function(results){
+            console.log(results);
         },
-        methods: {
-            checkWebsite: function () {
-                this.ajaxRequest = true;
-                this.$http.post('localhost:8080/api/create', {
-                    domain: this.domain
-                }, function (data, status, request) {
-                    this.postResults = data;
-
-                    this.ajaxRequest = false;
-                });
-            }
+        error: function(err){
+            console.log(err);
         }
     });
 

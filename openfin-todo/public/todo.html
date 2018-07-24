@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="icon" href="https://avatars0.githubusercontent.com/u/1569661?s=280&v=4">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <script src="javascripts/todo.js" async></script>
 </head>
 
@@ -24,7 +25,8 @@
         </a>
       </center>
     </div>
-    <input type="text" id="myInput" placeholder="Title...">
+    <input type="text" name="title" id="myInput" placeholder="Title...">
+    <input name="alias" type="hidden" class="alias" value="Hello World">
     <span onclick="newElement()" class="addBtn">Add</span>
   </div>
 
