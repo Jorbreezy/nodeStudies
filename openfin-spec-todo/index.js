@@ -12,7 +12,7 @@ app.use('/api', routes);
 
 app.use(
     express.static(
-        path.resolve(__dirname, './app')
+        path.resolve(__dirname, '../openfin-todo/public')
     )
 )
 
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 
 app.get('/home', (req, res) => {
     res.sendFile(
-        path.resolve(__dirname, 'app', 'index.html')
+        path.resolve(__dirname, '../openfin-todo/app/', 'index.html')
     )
 });
 
