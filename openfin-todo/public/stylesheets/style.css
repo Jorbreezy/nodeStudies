@@ -1,10 +1,11 @@
 #snap {
     height: 200px;
   }
+
   body {
       font-family: "Quicksand", sans-serif;
   }
-  /* modal code */
+
   .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -45,8 +46,7 @@
   .modal-default-button {
     float: right;
   }
-  /* Code for the footer */ 
-
+ 
   footer { background-color: #201f45; min-height:350px; font-family: 'Helvetica', serif; font-weight: 600;
   }
   .footerleft { margin-top:50px; padding:0 0px; 
@@ -90,19 +90,43 @@
    }
    
    
+   #icon { 
+    float:left; 
+    margin-right:5px;
+    width: 100px;
+    height: 100px;
+  }
+   
+   #icon-ul { 
+     list-style-type:none !important; 
+     margin:0px; 
+     padding:0px;
+   }
+
+   #icon-ul li { 
+     line-height:75px; 
+     width:100%; 
+     float:left;  
+   }
+
+
+   .icon { 
+     float:left; 
+     margin-right:5px;
+   }
+   
+   .icon-ul { 
+    list-style-type:none !important; 
+    margin:0px; 
+    padding:0px;
+  }
+
+  .icon-ul li { 
+    line-height:75px; 
+    width:100%; 
+    float:left;  
+  }
   
-   
-   .icon-ul { list-style-type:none !important; margin:0px; padding:0px;
-     
-   }
-   .icon-ul li { line-height:75px; width:100%; float:left;
-     
-   }
-   .icon { float:left; margin-right:5px;
-     
-   }
-   
-   
    .copyright { min-height:40px; background-color:#201f45;
      
    }
@@ -128,12 +152,12 @@
    .bottom_ul li a { color:#FFF;  font-size:12px;
      
    }
-   
-   /*Footer css for icons*/
+
   footer .col-sm-8 {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
   }
+
   footer ul {
-  list-style: none;
+    list-style: none;
   }
