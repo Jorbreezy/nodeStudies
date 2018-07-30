@@ -28,21 +28,28 @@ router.get('/todo/list', (req, res) => {
     console.log("test");
     const collection = [];
 
+
     db.get("ids", (error, ids) => {
+        if(error){
+            return res.status(200).json([]);
+        }
+
         ids.forEach((id, index) => {
             db.get(id, (error, todos) => {
                 collection.push(todos);
 
-                if (error) {
-                    res.status(404).json(error);
-                }
+                // if (error) {
+                //    return res.sendStatus(404).json(error);
+                // }
 
                 if (index === ids.length - 1) {
-                    res.status(200).json(collection);
+                    return res.status(200).json(collection);
                 }
             });
         });
     });
+
+
 });
 
 //ROUTES FOR CREATE
@@ -143,7 +150,6 @@ router.put('/todo/update/:id', (req, res) => {
             res.status(400).json('Ooops!', err);
         }
 
-
         db.get(id, function (err, value) {
             if (err) return console.log('Ooops!', err)
         });
@@ -179,7 +185,7 @@ router.get('/todo/search', (req, res) => {
                 todo = Array.isArray(todo) ? todo[0] : todo;
 
                 if (error) {
-                    res.status(400).json(error);
+                    //res.status(400).json(error);
                 } else if (todo.title.includes(q)) {
                     collection.push(todo);
                 }
