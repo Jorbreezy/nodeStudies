@@ -1,5 +1,6 @@
 $(document).ready(function(){
    load();
+   checked();
 });
 
 function load(){
@@ -18,7 +19,6 @@ function load(){
 
                     closeBtn(data.id);
                     hideCloseBtn();
-                    checked();
                 }
             });
 
@@ -73,8 +73,6 @@ function hideCloseBtn(){
     }
 }
 
-
-
 // Make Checked
 function checked() {
     const list = document.querySelector('ul');
@@ -83,6 +81,7 @@ function checked() {
             ev.target.classList.toggle('checked');
         }
     }, false);
+
 }
 
 
@@ -98,11 +97,13 @@ function newElement() {
     } else {
         document.getElementById("myUL").appendChild(li);
     }
+
     document.getElementById("myInput").value = "";
 
     const span = document.createElement("SPAN");
     const txt = document.createTextNode("\u00D7");
     span.className = "close";
+
     span.appendChild(txt);
     li.appendChild(span);
 
