@@ -9,11 +9,10 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="icon" href="https://avatars0.githubusercontent.com/u/1569661?s=280&v=4">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-  <script src="javascripts/todo.js" async></script>
 </head>
 
 <body>
+  <div id="app">
   <div id="myDIV" class="header">
     <div class="jumbotron">
       <div style="text-align: center;">
@@ -34,20 +33,35 @@
 
   </ul>
   <h3>todo count: {{ todos.length }}</h3>
-  <div v-for='todo in todos'>
+    <div v-for='todo in todos'>
+      <div style="border: 1px solid black; padding: 5px; margin: 10px;">
+        <ul>
+          <li>{{ todo.title }}</li>
+            <ul>
+              <li>Time: {{ todo.time }}</li>
+              <li>Comment: {{ todo.comment }}</li>
+            </ul>  
+        </ul>
+      </div>
+    </div>
     <div>
-      <h1>{{ todo.title }}</h1>
-      <p>{{ todo.time }}</p>
-      <p>{{ todo.comment }}</p>
+      <p>{{ newTodo.title }}</p>
+      <input v-model='newTodo.title' placeholder="Title" type="text"/ >
+      <input v-model='newTodo.comment' placeholder="Comment" type="text"/ >
+      <button @click='create()'>Submit</button>
     </div>
   </div>
-  <div>
-    <p>{{ newTodo.title }}</p>
-    <input v-model='newTodo.title' placeholder="Title" type="text"/ >
-    <input v-model='newTodo.comment' placeholder="comments" type="text"/ >
-    <button @click='create()'>Submit</button>
-  </div>
 </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+  crossorigin="anonymous"></script>
+  <script src="javascripts/script.js" async></script>
+
 </body>
 
 </html>

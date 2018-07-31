@@ -17,7 +17,7 @@ const app = new Vue({
                     this.todos = res.data.collection
                 })
                 .catch(console.error)
-        }, 1000)
+        }, 3000)
     },
     create: function() {
         axios({
