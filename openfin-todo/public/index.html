@@ -16,6 +16,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="javascripts/script.js" async></script>
 
@@ -52,22 +53,23 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0">Search</button>
         </form>
       </div>
     </nav>
 
     <div class="jumbotron">
-      <center>
+      <div style="text-align: center;">
         <h1 class="display-4">Hello, Welcome!</h1>
-        <center>
+        <div style="text-align: center;">
           <a href="todo.html">
             <img src="./images/openlogo (1).gif">
           </a>
-        </center>
+        </div>
 
-        <p class="lead">This is OpenFin To-Do, a simple yet very complex To-Do with extra components for extra attention, featuring mainly
+        <p class="lead">This is OpenFin To-Do, a simple yet very complex To-Do with extra components for extra
+          attention, featuring mainly
           content and information.</p>
         <script type="text/x-template" id="modal-template">
           <transition name="modal">
@@ -83,7 +85,7 @@
 
                   <div class="modal-body">
                     <slot name="body">
-                      <center><img id='snap' src="snapcode.png"></center>
+                      <div style="text-align: center;"><img id='snap' src="snapcode.png"></div>
                     </slot>
                   </div>
 
@@ -91,8 +93,8 @@
                     <slot name="footer">
 
                       <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
+                        OK
+                      </button>
                     </slot>
                   </div>
                 </div>
@@ -100,21 +102,21 @@
             </div>
           </transition>
         </script>
-        <div id="app">
+
+        <div id="footer">
           <button id="show-modal" @click="showModal = true">Surprise</button>
-          <modal v-if="showModal" @close="showModal = false"> </modal>
+          <modal v-if="showModal" @close="showModal = false"></modal>
         </div>
         <hr class="my-4">
         <p>It's like Google Calendar though better... I Think</p>
         <p class="lead">
           <a class="btn btn-primary btn-lg" href="https://openfin.co/" role="button">Vist OpenFin</a>
         </p>
-      </center>
+      </div>
 
       <footer>
         <div class="container">
           <div class="row">
-
 
             <div class="col-md-4 col-sm-4 paddingtop-bottom" style="text-align:center; color: white;">
               <h6 class="heading7">Links</h6>
@@ -152,9 +154,9 @@
             </div>
 
 
-
           </div>
         </div>
+      </footer>
     </div>
   </div>
   </div>
