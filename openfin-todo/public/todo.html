@@ -13,6 +13,14 @@
 
 <body>
   <div id="app">
+      <div v-if='todos.length === 0' class="spinner-wrapper">
+          <div class="spinner">
+            <h1 style="color: white; text-align: center;">{{ errorMessage }}</h1>
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+      </div>
   <div id="myDIV" class="header">
     <div class="jumbotron">
       <div style="text-align: center;">
@@ -24,7 +32,7 @@
         </a>
       </div>
     </div>
-    <input type="text" name="title" id="myInput" placeholder="Title...">
+    <input type="text" name="title"  placeholder="Title...">
     <input name="alias" type="hidden" class="alias" value="">
     <span onclick="newElement()" class="addBtn">Add</span>
   </div>
@@ -46,9 +54,9 @@
     </div>
     <div>
       <p>{{ newTodo.title }}</p>
-      <input v-model='newTodo.title' placeholder="Title" type="text"/ >
+      <input v-model='newTodo.title' placeholder="Title" type="text"/ id="myInput">
       <input v-model='newTodo.comment' placeholder="Comment" type="text"/ >
-      <button @click='create()'>Submit</button>
+      <button @click='create()' class="addBtn" >Submit</button>
     </div>
   </div>
 </div>
@@ -63,5 +71,4 @@
   <script src="javascripts/script.js" async></script>
 
 </body>
-
 </html>
