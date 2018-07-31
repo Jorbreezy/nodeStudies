@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $(document).ready(function(){
    load();
    checked();
@@ -136,3 +137,5 @@ function newElement() {
         }
     });
 }
+=======
+>>>>>>> 1990b5642b6bb435684f8a4aac47ca4c3d98c409

@@ -10,14 +10,12 @@ const db = level('./db', {
     valueEncoding: 'json'
 });
 
-let todos = [];
-
-router.get("/:link", (req, res, next) => {
+router.get("/todo/link/:link", (req, res, next) => {
     const link = req.params.link;
 
     db.get(`link:${link}`, (err, data) => {
         if (err) {
-            res.status(400).json({ msg: err });
+            return res.status(400).json({ message: err.message });
         }
         res.status(200).json(data);
     });
@@ -26,8 +24,7 @@ router.get("/:link", (req, res, next) => {
 //GETTING TODO LIST
 router.get('/todo/list', (req, res) => {
     const collection = [];
-
-
+    
     db.get("ids", (error, ids) => {
         if(error){
             return res.status(200).json([]);
@@ -35,14 +32,12 @@ router.get('/todo/list', (req, res) => {
 
         ids.forEach((id, index) => {
             db.get(id, (error, todos) => {
-                collection.push(todos);
-
-                // if (error) {
-                //    return res.sendStatus(404).json(error);
-                // }
-
+                if (!error) {
+                    collection.push(todos);
+                }
+                
                 if (index === ids.length - 1) {
-                    return res.status(200).json(collection);
+                    return res.status(200).json({ collection });
                 }
             });
         });
@@ -52,58 +47,48 @@ router.get('/todo/list', (req, res) => {
 });
 
 //ROUTES FOR CREATE
-router.post('/create', (req, res) => {
-    let todo = req.body;
-    console.log('Data', todo);
+router.post('/todo/create', (req, res) => {
+    const todo = req.body;
 
-
-    let id = Math.random().toString(16).slice(2);
     todo.time = moment().format('MMMM Do YYYY, h:mm:ss a')
-    todo.id = id;
+    todo.id = Math.random().toString(16).slice(2);
 
-    if (!todo.alias) {
-        res.status(400).json({ status: 404, message: "Please include alias." });
+    if (todo.title === "") {
+        return res.status(200).json({ message: 'Ttitle of todo is empty' });
     }
-
-    todos.push(todo);
-
-    if (todo.title == "") {
-        res.status(200).json({ message: "Empty" });
-        console.log("Empty");
-    } else {
-        db.put(todo.alias, todo, (err) => {
-            if (!err) {
-                db.put(id, todo, err => {
-                    if (err) {
-                        return console.log(`error: ${err.message}`);
-                        res.status(500).json({ message: err.message })
-                    } else {
-                        console.log(`Saved todo - id number ${id}`);
-                        db.get('ids', (error, data) => {
-                            if (!data) {
-                                db.put("ids", [id], error => {
-                                    if (!error) {
-                                        res.status(200).json(todo);
-                                    }
-                                });
-                            } else {
-                                data.push(id);
-                                db.put("ids", data, error => {
-                                    if (!error) {
-                                        res.status(200).json(todo);
-                                    } else {
-                                        res.status(400).json({ msg: error });
-                                    }
-                                });
-                            }
-                        });
-                    }
-
-                })
+    
+    db.put(todo.id, todo, (err) => {
+        if (err) {
+            console.error(err)
+            return res.status(500).json({ message: err.message });
+        } 
+        
+        db.get('ids', (error, data) => {
+            if (error) {
+                console.error(error)
+                return res.status(500).json({ message: error.message })
             }
-        });
-    }
 
+            if (!data) {
+                db.put("ids", [id], error => {
+                    if (error) {
+                        console.error(err)
+                        res.status(500).json({ message: error.message })
+                    }
+                })
+                return;
+            }
+            
+            data.push(todo.id);
+            db.put("ids", data, error => {
+                if (error) {
+                    return res.status(500).json({ message: error.message });
+                }
+
+                res.status(200).json(todo);
+            });
+        });
+    })
 });
 
 router.post("/todo/shareable", (req, res, nest) => {
@@ -125,7 +110,6 @@ router.post("/todo/shareable", (req, res, nest) => {
 
 //TODO:ID ROUTE
 router.get('/todo/get/:id', (req, res, next) => {
-    console.log('Request Id:', req.params.id);
 
     db.get(req.params.id, (error, data) => {
         if (!error) {
@@ -190,7 +174,6 @@ router.get('/todo/search', (req, res) => {
                 }
 
                 if (i === (ids.length - 1)) {
-                    console.log('done')
                     res.status(200).json(collection);
                 }
             });
@@ -198,20 +181,20 @@ router.get('/todo/search', (req, res) => {
     });
 });
 
-function collect(ids, cb) {
-    const collection = []
+// function collect(ids, cb) {
+//     const collection = []
 
-    for (let i = 0; i < ids.length; i++) {
-        db.get(ids[i], (err, document) => {
-            if (err) return cb(err, undefined)
+//     for (let i = 0; i < ids.length; i++) {
+//         db.get(ids[i], (err, document) => {
+//             if (err) return cb(err, undefined)
 
-            if (i === (ids.length - 1)) {
-                return cb(null, collection)
-            }
-            collection.push(document)
-        })
-    }
-}
+//             if (i === (ids.length - 1)) {
+//                 return cb(null, collection)
+//             }
+//             collection.push(document)
+//         })
+//     }
+// }
 
 //FOR UPLOADING FILES
 // const storage = multer.diskStorage({
@@ -284,7 +267,6 @@ router.post('/todo/upload', function (req, res, next) {
     var upload = multer({ storage: storage }).single('img');
 
     upload(req, res, function (err) {
-        console.log(req.file);
         if (err) {
             res.json({ success: false, message: err });
         }

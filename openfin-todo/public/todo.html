@@ -33,7 +33,21 @@
   <ul id="myUL">
 
   </ul>
-
+  <h3>todo count: {{ todos.length }}</h3>
+  <div v-for='todo in todos'>
+    <div>
+      <h1>{{ todo.title }}</h1>
+      <p>{{ todo.time }}</p>
+      <p>{{ todo.comment }}</p>
+    </div>
+  </div>
+  <div>
+    <p>{{ newTodo.title }}</p>
+    <input v-model='newTodo.title' placeholder="Title" type="text"/ >
+    <input v-model='newTodo.comment' placeholder="comments" type="text"/ >
+    <button @click='create()'>Submit</button>
+  </div>
+</div>
 </body>
 
 </html>
