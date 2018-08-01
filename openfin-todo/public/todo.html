@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="icon" href="https://avatars0.githubusercontent.com/u/1569661?s=280&v=4">
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -58,10 +59,13 @@
 
     <div v-for='todo in todos'>
       <div id="box">
-          <input class="toggle" type="checkbox" v-model="todo.completed">
-          <button class="destroy" @click="removeTodo(todo)">X</button>
+          <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          <button class="destroy" @click="removeTodo(todo)"><i class="fa fa-trash"></i></button>
         <ul>
-          <li class="mess" >{{ todo.title }}</li>
+            <li class="mess">{{ todo.title }}</li>
           <ul>
             <li class="mess">Time: {{ todo.time }}</li>
             <li class="place">Comment: {{ todo.comment }}</li>
