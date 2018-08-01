@@ -12,9 +12,9 @@ const db = level('./db', {
 
 
 db.get('ids', (error) => {
-    if(error){
+    if (error) {
         db.put('ids', [], (error) => {
-            if(error){
+            if (error) {
                 console.log(error);
                 return;
             }
@@ -28,7 +28,7 @@ router.get("/todo/link/:link", (req, res, next) => {
 
     db.get(`link:${link}`, (err, data) => {
         if (err) {
-            return res.status(400).json({ message: err.message });
+            return res.status(400).json({message: err.message});
         }
         res.status(200).json(data);
     });
@@ -37,9 +37,9 @@ router.get("/todo/link/:link", (req, res, next) => {
 //GETTING TODO LIST
 router.get('/todo/list', (req, res) => {
     const collection = [];
-    
+
     db.get("ids", (error, ids) => {
-        if(error){
+        if (error) {
             return res.status(200).json([]);
         }
 
@@ -48,9 +48,9 @@ router.get('/todo/list', (req, res) => {
                 if (!error) {
                     collection.push(todos);
                 }
-                
+
                 if (index === ids.length - 1) {
-                    return res.status(200).json({ collection });
+                    return res.status(200).json({collection});
                 }
             });
         });
@@ -67,35 +67,35 @@ router.post('/todo/create', (req, res) => {
     todo.id = Math.random().toString(16).slice(2);
 
     if (todo.title === "") {
-        return res.status(200).json({ message: 'Title of todo is empty' });
+        return res.status(200).json({message: 'Title of todo is empty'});
     }
-    
+
     db.put(todo.id, todo, (err) => {
         if (err) {
             console.error(err, 'err 1')
-            return res.status(500).json({ message: err.message });
-        } 
-        
+            return res.status(500).json({message: err.message});
+        }
+
         db.get('ids', (error, data) => {
             if (error) {
                 console.error(error, 'err2')
-                return res.status(500).json({ message: error.message })
+                return res.status(500).json({message: error.message})
             }
 
             if (!data) {
                 db.put("ids", [id], error => {
                     if (error) {
                         console.error(err)
-                        res.status(500).json({ message: error.message })
+                        res.status(500).json({message: error.message})
                     }
                 })
                 return;
             }
-            
+
             data.push(todo.id);
             db.put("ids", data, error => {
                 if (error) {
-                    return res.status(500).json({ message: error.message });
+                    return res.status(500).json({message: error.message});
                 }
 
                 res.status(200).json(todo);
@@ -112,11 +112,11 @@ router.post("/todo/shareable", (req, res, nest) => {
         if (!err) {
             db.put(`link:${short}`, data, (err) => {
                 if (!err) {
-                    res.status(200).json({ link: req.headers.host + "/" + short });
+                    res.status(200).json({link: req.headers.host + "/" + short});
                 }
             });
         } else {
-            res.status(400).json({ msg: error });
+            res.status(400).json({msg: error});
         }
     });
 });
@@ -140,7 +140,7 @@ router.put('/todo/update/:id', (req, res) => {
 
     db.put(id, item, (err) => {
         if (!err) {
-            res.status(200).json({ message: "Updated" });
+            res.status(200).json({message: "Updated"});
         } else {
             return console.log('Ooops!', err);
             res.status(400).json('Ooops!', err);
@@ -160,10 +160,10 @@ router.delete('/todo/delete/:id', (req, res) => {
     db.del(id, (err) => {
         if (err) {
             return console.log(`error: ${err.message}`);
-            res.status(400).json({ message: err.message });
+            res.status(400).json({message: err.message});
         } else {
             console.log(`Deleted ${id}`);
-            res.status(202).json({ message: "Deleted" });
+            res.status(202).json({message: "Deleted"});
         }
 
     });
@@ -277,18 +277,17 @@ var storage = multer.diskStorage({
 
 router.post('/todo/upload', function (req, res, next) {
 
-    var upload = multer({ storage: storage }).single('img');
+    var upload = multer({storage: storage}).single('img');
 
     upload(req, res, function (err) {
         if (err) {
-            res.json({ success: false, message: err });
+            res.json({success: false, message: err});
         }
         else {
-            res.json({ success: true, message: "Photo was updated !", file: req.file });
+            res.json({success: true, message: "Photo was updated !", file: req.file});
         }
     });
 });
-
 
 
 module.exports = router;
