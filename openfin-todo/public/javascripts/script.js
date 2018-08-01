@@ -10,6 +10,10 @@ const app = new Vue({
         showModal: false
     },
     methods: {
+        editTodo: function (todo) {
+            this.beforeEditCache = todo.title
+            this.editedTodo = todo
+          },
         load: function () {
             setTimeout(() => {
                 axios.get('http://localhost:8080/api/todo/list')
@@ -17,7 +21,7 @@ const app = new Vue({
                         this.todos = res.data.collection
                     })
                     .catch(console.error)
-            }, 0)
+            }, 800)
         },
         create: function () {
             axios({
@@ -43,67 +47,94 @@ app.load();
 Vue.component('modal', {
     template: '#modal-template'
 })
-$(function () {
-    $('a[href*=#]').on('click', function (e) {
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top }, 500, 'linear');
-    });
-});
+// methods: {
+//     addTodo: function () {
+//       var value = this.newTodo && this.newTodo.trim()
+//       if (!value) {
+//         return
+//       }
+//       this.todos.push({
+//         id: todoStorage.uid++,
+//         title: value,
+//         completed: false
+//       })
+//       this.newTodo = ''
+//     },
 
-//  // Make Close Button
-//  function closeBtn(id) {
-//      let myNodelist = document.getElementsByTagName("LI");
-//      let i;
+//     removeTodo: function (todo) {
+//       this.todos.splice(this.todos.indexOf(todo), 1)
+//     },
 
-//      let span = document.createElement("SPAN");
-//      let txt = document.createTextNode("\u00D7");
-//      span.className = "close";
-//      span.appendChild(txt);
+//     editTodo: function (todo) {
+//       this.beforeEditCache = todo.title
+//       this.editedTodo = todo
+//     },
 
-//      span.onclick = function(){
+//     doneEdit: function (todo) {
+//       if (!this.editedTodo) {
+//         return
+//       }
+//       this.editedTodo = null
+//       todo.title = todo.title.trim()
+//       if (!todo.title) {
+//         this.removeTodo(todo)
+//       }
+//     }
 
-//          console.log('REACHED');
+// //  // Make Close Button
+// //  function closeBtn(id) {
+// //      let myNodelist = document.getElementsByTagName("LI");
+// //      let i;
 
-//          $.ajax({
-//              url:'http://localhost:8080/api/todo/delete/' + id,
-//              method:'DELETE',
-//              success: function(msg){
-//                  console.log('Deleted ' + id)
-//              }
-//          })
+// //      let span = document.createElement("SPAN");
+// //      let txt = document.createTextNode("\u00D7");
+// //      span.className = "close";
+// //      span.appendChild(txt);
 
-//          $('ul').empty();
-//          load();
+// //      span.onclick = function(){
 
-//          const div = this.parentElement;
-//          div.style.display = "none";
-//      };
+// //          console.log('REACHED');
 
-//      for (i = 0; i < myNodelist.length; i++) {
-//          myNodelist[i].appendChild(span);
-//      }
-//  }
+// //          $.ajax({
+// //              url:'http://localhost:8080/api/todo/delete/' + id,
+// //              method:'DELETE',
+// //              success: function(msg){
+// //                  console.log('Deleted ' + id)
+// //              }
+// //          })
 
-//  // Hide Delete List
-//  function hideCloseBtn(){
-//      const close = document.getElementsByClassName("close");
+// //          $('ul').empty();
+// //          load();
 
-//      for (i = 0; i < close.length; i++) {
+// //          const div = this.parentElement;
+// //          div.style.display = "none";
+// //      };
 
-//      }
-//  }
+// //      for (i = 0; i < myNodelist.length; i++) {
+// //          myNodelist[i].appendChild(span);
+// //      }
+// //  }
+
+// //  // Hide Delete List
+// //  function hideCloseBtn(){
+// //      const close = document.getElementsByClassName("close");
+
+// //      for (i = 0; i < close.length; i++) {
+
+// //      }
+// //  }
 
 
 
-// Make Checked
-function checked() {
-    const list = document.querySelector('ul');
-    list.addEventListener('click', function (ev) {
-        if (ev.target.tagName === 'LI') {
-            ev.target.classList.toggle('checked');
-        }
-    }, false);
-}
+// // Make Checked
+// function checked() {
+//     const list = document.querySelector('ul');
+//     list.addEventListener('click', function (ev) {
+//         if (ev.target.tagName === 'LI') {
+//             ev.target.classList.toggle('checked');
+//         }
+//     }, false);
+// }
 
 
 //  // New Item

@@ -8,14 +8,14 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/todo.css" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="icon" href="https://avatars0.githubusercontent.com/u/1569661?s=280&v=4">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 </head>
 
 <body>
   <div id="app">
     <div v-if='todos.length === 0' class="spinner-wrapper">
       <div class="spinner">
-        <h1 style="color: white; text-align: center;">{{ errorMessage }}</h1>
+        <h1 style="color: white; text-align: center; ">{{ errorMessage }}</h1>
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
@@ -40,7 +40,7 @@
           </center>
           <center>
             <a href="#section5">
-              <span></span>
+            
               <button class="btn btn-primary btn-lg">Scroll</button>
             </a>
           </center>
@@ -59,10 +59,10 @@
     <div v-for='todo in todos'>
       <div id="box">
         <ul>
-          <li class="place" >{{ todo.title }}</li>
+          <li class="mess">{{ todo.title }}</li>
           <ul>
-            <li >Time: {{ todo.time }}</li>
-            <li>Comment: {{ todo.comment }}</li>
+            <li class="mess">Time: {{ todo.time }}</li>
+            <li class="place">Comment: {{ todo.comment }}</li>
           </ul>
         </ul>
       </div>
