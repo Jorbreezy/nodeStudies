@@ -58,8 +58,10 @@
 
     <div v-for='todo in todos'>
       <div id="box">
+          <input class="toggle" type="checkbox" v-model="todo.completed">
+          <button class="destroy" @click="removeTodo(todo)">X</button>
         <ul>
-          <li class="mess">{{ todo.title }}</li>
+          <li class="mess" >{{ todo.title }}</li>
           <ul>
             <li class="mess">Time: {{ todo.time }}</li>
             <li class="place">Comment: {{ todo.comment }}</li>

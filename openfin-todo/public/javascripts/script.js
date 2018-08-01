@@ -10,10 +10,27 @@ const app = new Vue({
         showModal: false
     },
     methods: {
-        editTodo: function (todo) {
+        addTodo: function () {
+            var value = this.newTodo && this.newTodo.trim()
+            if (!value) {
+              return
+            }
+            this.todos.push({
+              id: todoStorage.uid++,
+              title: value,
+              completed: false
+            })
+            this.newTodo = ''
+          },
+      
+          removeTodo: function (todo) {
+            this.todos.splice(this.todos.indexOf(todo), 1)
+          },
+      
+          editTodo: function (todo) {
             this.beforeEditCache = todo.title
             this.editedTodo = todo
-          },
+          },      
         load: function () {
             setTimeout(() => {
                 axios.get('http://localhost:8080/api/todo/list')
@@ -47,82 +64,59 @@ app.load();
 Vue.component('modal', {
     template: '#modal-template'
 })
-// methods: {
-//     addTodo: function () {
-//       var value = this.newTodo && this.newTodo.trim()
-//       if (!value) {
-//         return
-//       }
-//       this.todos.push({
-//         id: todoStorage.uid++,
-//         title: value,
-//         completed: false
-//       })
-//       this.newTodo = ''
-//     },
 
-//     removeTodo: function (todo) {
-//       this.todos.splice(this.todos.indexOf(todo), 1)
-//     },
+    // doneEdit: function  {
+    //   if (!this.editedTodo) {
+    //     return
+    //   }
+    //   this.editedTodo = null
+    //   todo.title = todo.title.trim()
+    //   if (!todo.title) {
+    //     this.removeTodo(todo)
+    //   }
 
-//     editTodo: function (todo) {
-//       this.beforeEditCache = todo.title
-//       this.editedTodo = todo
-//     },
+ // Make Close Button
+//  function closeBtn(id) {
+//      let myNodelist = document.getElementsByTagName("#delete");
+//      let i;
 
-//     doneEdit: function (todo) {
-//       if (!this.editedTodo) {
-//         return
-//       }
-//       this.editedTodo = null
-//       todo.title = todo.title.trim()
-//       if (!todo.title) {
-//         this.removeTodo(todo)
-//       }
-//     }
+//      let span = document.createElement("SPAN");
+//      let txt = document.createTextNode("\u00D7");
+//      span.className = "close";
+//      span.appendChild(txt);
 
-// //  // Make Close Button
-// //  function closeBtn(id) {
-// //      let myNodelist = document.getElementsByTagName("LI");
-// //      let i;
+//      span.onclick = function(){
 
-// //      let span = document.createElement("SPAN");
-// //      let txt = document.createTextNode("\u00D7");
-// //      span.className = "close";
-// //      span.appendChild(txt);
+//          console.log('REACHED');
 
-// //      span.onclick = function(){
+//          $.ajax({
+//              url:'http://localhost:8080/api/todo/delete/' + id,
+//              method:'DELETE',
+//              success: function(msg){
+//                  console.log('Deleted ' + id)
+//              }
+//          })
 
-// //          console.log('REACHED');
+//          $('ul').empty();
+//          load();
 
-// //          $.ajax({
-// //              url:'http://localhost:8080/api/todo/delete/' + id,
-// //              method:'DELETE',
-// //              success: function(msg){
-// //                  console.log('Deleted ' + id)
-// //              }
-// //          })
+//          const div = this.parentElement;
+//          div.style.display = "none";
+//      };
 
-// //          $('ul').empty();
-// //          load();
+//      for (i = 0; i < myNodelist.length; i++) {
+//          myNodelist[i].appendChild(span);
+//      }
+//  }
 
-// //          const div = this.parentElement;
-// //          div.style.display = "none";
-// //      };
+//  // Hide Delete List
+//  function hideCloseBtn(){
+//      const close = document.getElementsByClassName("close");
 
-// //      for (i = 0; i < myNodelist.length; i++) {
-// //          myNodelist[i].appendChild(span);
-// //      }
-// //  }
+//      for (i = 0; i < close.length; i++) {
 
-// //  // Hide Delete List
-// //  function hideCloseBtn(){
-// //      const close = document.getElementsByClassName("close");
-
-// //      for (i = 0; i < close.length; i++) {
-
-// //      }
-// //  }
+//      }
+//  }
 
 
 
