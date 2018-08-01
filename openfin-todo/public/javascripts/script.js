@@ -38,7 +38,12 @@ app.load();
 Vue.component('modal', {
   template: '#modal-template'
 })
- 
+$(function() {
+    $('a[href*=#]').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+    });
+  });
  
 //  // Make Close Button
 //  function closeBtn(id) {
@@ -85,15 +90,15 @@ Vue.component('modal', {
  
  
  
-//  // Make Checked
-//  function checked() {
-//      const list = document.querySelector('ul');
-//      list.addEventListener('click', function (ev) {
-//          if (ev.target.tagName === 'LI') {
-//              ev.target.classList.toggle('checked');
-//          }
-//      }, false);
-//  }
+ // Make Checked
+ function checked() {
+     const list = document.querySelector('ul');
+     list.addEventListener('click', function (ev) {
+         if (ev.target.tagName === 'LI') {
+             ev.target.classList.toggle('checked');
+         }
+     }, false);
+ }
  
  
 //  // New Item

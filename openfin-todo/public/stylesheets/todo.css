@@ -145,7 +145,7 @@ body {
   input {
     margin: 0;
     border: none;
-    border-radius: 0;
+    border-radius: 25px;
     width: 75%;
     padding: 10px;
     float: left;
@@ -162,13 +162,34 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 0;
+    border-radius: 25px;
   }
 
   .addBtn:hover {
     background-color: #5089e5;
-  }
+  } 
 
   #myInput{
     outline: none;
   }
+#box{
+  border-radius: 25px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   padding: 5px; 
+   margin: 10px;
+}
+.place {
+  border-radius: 25px;
+}
+.place:hover {
+ background-color: #5089e5;
+}
+.count {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-size: 25px;
+}
+
+#section04 a {
+  padding-top: 80px;
+}

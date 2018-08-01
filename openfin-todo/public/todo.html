@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/todo.css" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link rel="icon" href="https://avatars0.githubusercontent.com/u/1569661?s=280&v=4">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 
 <body>
@@ -21,44 +21,47 @@
             <div class="bounce3"></div>
           </div>
       </div>
-  <div id="myDIV" class="header">
-    <div class="jumbotron">
+      <div id="myDIV" class="header">
+
+  <div class="jumbotron">
       <div style="text-align: center;">
-        <h2>OpenFin To-Do List</h2>
+    <h2 class='count'>OpenFin To-Do List</h2>
       </div>
       <div style="text-align: center;">
         <a href="index.html">
           <img src="./images/openlogo (1).gif">
         </a>
       </div>
+      <hr class="my-4">
+      <section id="section04" class="demo">
+          <center><h3 class="count">Number Of Things To-Do: {{ todos.length }}</h3></center>
+          <center><a href="#section5"><span></span><button class="btn btn-primary btn-lg">Scroll</button></a></center>
+        </section>
+      <hr class="my-4">
     </div>
-    <input type="text" name="title"  placeholder="Title...">
-    <input name="alias" type="hidden" class="alias" value="">
-    <span onclick="newElement()" class="addBtn">Add</span>
-  </div>
-
-  <ul id="myUL">
-
-  </ul>
-  <h3>todo count: {{ todos.length }}</h3>
+</div>
     <div v-for='todo in todos'>
-      <div style="border: 1px solid black; padding: 5px; margin: 10px;">
+      <div id="box">
         <ul>
-          <li>{{ todo.title }}</li>
+          <li class="place">{{ todo.title }}</li>
             <ul>
-              <li>Time: {{ todo.time }}</li>
-              <li>Comment: {{ todo.comment }}</li>
+              <li class="place">Time: {{ todo.time }}</li>
+              <li class="place">Comment: {{ todo.comment }}</li>
             </ul>  
         </ul>
       </div>
     </div>
     <div>
+  
+
+    <section id="section5" class="demo">
       <p>{{ newTodo.title }}</p>
-      <input v-model='newTodo.title' placeholder="Title" type="text"/ id="myInput">
-      <input v-model='newTodo.comment' placeholder="Comment" type="text"/ >
+      <input v-model='newTodo.title' placeholder="Title.." type="text"/ id="myInput">
+      <input v-model='newTodo.comment' placeholder="Comment.." type="text"/ id="myComment">
       <button @click='create()' class="addBtn" >Submit</button>
-    </div>
-  </div>
+    </section>
+      </div>
+      </div>
 </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
