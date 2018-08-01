@@ -17,7 +17,7 @@ const app = new Vue({
                     this.todos = res.data.collection
                 })
                 .catch(console.error)
-        }, 3000)
+        }, 0)
     },
     create: function() {
         axios({
@@ -28,11 +28,16 @@ const app = new Vue({
                 comment: this.newTodo.comment,
             }
         })
-        .then(console.log)
+        .then(res => {
+            console.log(res.data);
+            this.todos.push(res.data);
+
+        })
         .catch(console.error)
     }
   }
 })
+
 app.load();
 
 Vue.component('modal', {

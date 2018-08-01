@@ -10,6 +10,19 @@ const db = level('./db', {
     valueEncoding: 'json'
 });
 
+
+db.get('ids', (error) => {
+    if(error){
+        db.put('ids', [], (error) => {
+            if(error){
+                console.log(error);
+                return;
+            }
+        })
+    }
+})
+
+
 router.get("/todo/link/:link", (req, res, next) => {
     const link = req.params.link;
 
@@ -54,18 +67,18 @@ router.post('/todo/create', (req, res) => {
     todo.id = Math.random().toString(16).slice(2);
 
     if (todo.title === "") {
-        return res.status(200).json({ message: 'Ttitle of todo is empty' });
+        return res.status(200).json({ message: 'Title of todo is empty' });
     }
     
     db.put(todo.id, todo, (err) => {
         if (err) {
-            console.error(err)
+            console.error(err, 'err 1')
             return res.status(500).json({ message: err.message });
         } 
         
         db.get('ids', (error, data) => {
             if (error) {
-                console.error(error)
+                console.error(error, 'err2')
                 return res.status(500).json({ message: error.message })
             }
 

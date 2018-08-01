@@ -21,8 +21,8 @@
     background-color: white;
     border-radius: 100%;
     display: inline-block;
-    -webkit-animation: sk-bouncedelay 1.0s infinite ease-in-out both;
-    animation: sk-bouncedelay 1.0s infinite ease-in-out both;
+    -webkit-animation: sk-bouncedelay 1.2s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.2s infinite ease-in-out both;
   }
   
   .loader .bounce1 {
@@ -58,7 +58,6 @@
   body {
       font-family: "Quicksand", sans-serif;
   }
-
   .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -99,7 +98,19 @@
   .modal-default-button {
     float: right;
   }
- 
+   .modal-enter {
+    opacity: 0;
+  }
+  
+  .modal-leave-active {
+    opacity: 0;
+  }
+  
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
   footer { background-color: #201f45; min-height:350px; font-family: 'Helvetica', serif; font-weight: 600;
   }
   .footerleft { margin-top:50px; padding:0 0px; 
