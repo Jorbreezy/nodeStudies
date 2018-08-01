@@ -13,65 +13,72 @@
 
 <body>
   <div id="app">
-      <div v-if='todos.length === 0' class="spinner-wrapper">
-          <div class="spinner">
-            <h1 style="color: white; text-align: center;">{{ errorMessage }}</h1>
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-          </div>
+    <div v-if='todos.length === 0' class="spinner-wrapper">
+      <div class="spinner">
+        <h1 style="color: white; text-align: center;">{{ errorMessage }}</h1>
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
       </div>
-      <div id="myDIV" class="header">
-
-  <div class="jumbotron">
-      <div style="text-align: center;">
-    <h2 class='count'>OpenFin To-Do List</h2>
-      </div>
-      <div style="text-align: center;">
-        <a href="index.html">
-          <img src="./images/openlogo (1).gif">
-        </a>
-      </div>
-      <hr class="my-4">
-      <section id="section04" class="demo">
-          <center><h3 class="count">Number Of Things To-Do: {{ todos.length }}</h3></center>
-          <center><a href="#section5"><span></span><button class="btn btn-primary btn-lg">Scroll</button></a></center>
-        </section>
-      <hr class="my-4">
     </div>
-</div>
+    <div id="myDIV" class="header">
+
+      <div class="jumbotron">
+        <hr class="my-4">
+        <div style="text-align: center;">
+          <h2 class='count'>OpenFin To-Do List</h2>
+        </div>
+        <div style="text-align: center;">
+          <a href="index.html">
+            <img src="./images/openlogo (1).gif">
+          </a>
+        </div>
+        <hr class="my-4">
+        <section id="section04" class="demo">
+          <center>
+            <h3 class="count">Number Of Things To-Do: {{ todos.length }}</h3>
+          </center>
+          <center>
+            <a href="#section5">
+              <span></span>
+              <button class="btn btn-primary btn-lg">Scroll</button>
+            </a>
+          </center>
+        </section>
+        <div>
+            <hr class="m-4">
+          <section id="section5" class="demo">
+            <input v-model='newTodo.title' placeholder="Title.." type="text" / id="myInput">
+            <input v-model='newTodo.comment' placeholder="Comment.." type="text" / id="myComment">
+            <button @click='create()' class="addBtn">Submit</button>
+          </section>
+        </div>
+      </div>
+    </div>
+
     <div v-for='todo in todos'>
       <div id="box">
         <ul>
-          <li class="place">{{ todo.title }}</li>
-            <ul>
-              <li class="place">Time: {{ todo.time }}</li>
-              <li class="place">Comment: {{ todo.comment }}</li>
-            </ul>  
+          <li class="place" >{{ todo.title }}</li>
+          <ul>
+            <li >Time: {{ todo.time }}</li>
+            <li>Comment: {{ todo.comment }}</li>
+          </ul>
         </ul>
       </div>
     </div>
-    <div>
-  
+  </div>
 
-    <section id="section5" class="demo">
-      <p>{{ newTodo.title }}</p>
-      <input v-model='newTodo.title' placeholder="Title.." type="text"/ id="myInput">
-      <input v-model='newTodo.comment' placeholder="Comment.." type="text"/ id="myComment">
-      <button @click='create()' class="addBtn" >Submit</button>
-    </section>
-      </div>
-      </div>
-</div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-  crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-  crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
   <script src="javascripts/script.js" async></script>
 
 </body>
+
 </html>

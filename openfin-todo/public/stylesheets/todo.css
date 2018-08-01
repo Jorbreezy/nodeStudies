@@ -90,7 +90,7 @@ body {
 
 
   ul li:hover {
-    background: #201f45;
+    background: #3399ff;
   }
 
   ul li.checked {
@@ -189,7 +189,9 @@ body {
   text-align: center;
   font-size: 25px;
 }
-
+.mess {
+  border-radius: 25px;
+}
 #section04 a {
   padding-top: 80px;
 }
