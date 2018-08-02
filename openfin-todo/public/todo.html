@@ -47,7 +47,7 @@
           </center>
         </section>
         <div>
-            <hr class="m-4">
+            
           <section id="section5" class="demo">
             <input v-model='newTodo.title' placeholder="Title.." type="text" / id="myInput">
             <input v-model='newTodo.comment' placeholder="Comment.." type="text" / id="myComment">
@@ -60,7 +60,7 @@
     <div v-for='todo in todos'>
       <div id="box">
           <label class="switch">
-              <input type="checkbox">
+              <input type="checkbox" @click="check" v-model="todo.completed">
               <span class="slider round"></span>
             </label>
           <button class="destroy" @click="removeTodo(todo)"><i class="fa fa-trash"></i></button>
