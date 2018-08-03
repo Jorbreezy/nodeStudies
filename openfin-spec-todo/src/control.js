@@ -22,7 +22,6 @@ db.get('ids', (error) => {
     }
 })
 
-
 router.get("/todo/link/:link", (req, res, next) => {
     const link = req.params.link;
 
