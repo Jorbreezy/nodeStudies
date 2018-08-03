@@ -11,16 +11,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./stylesheets/todo.css">
 </head>
-
 <body>
+
 <div id="app">
-  <div v-if='todos.length === 0' class="spinner-wrapper">
+
+  <div class="spinner-wrapper">
+
     <div class="spinner">
       <h1 style="color: white; text-align: center; ">{{ errorMessage }}</h1>
       <div class="bounce1"></div>
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>
+
   </div>
 
     <div id="myDIV" class="header">
@@ -50,14 +53,13 @@
         </section>
       </div>
   </div>
-</div>
 
   <div v-for='todo in todos'>
     <div id="box">
 
         <input type="checkbox" />
         
-        <button class="destroy" @click="removeTodo(todo)">
+        <button class="destroy" @click="removeTodo(todo.id, todo)">
         <i class="fa fa-trash"></i>
       </button>
       <ul>
@@ -69,6 +71,7 @@
       </ul>
   </div>
 </div>  
+</div>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> 
