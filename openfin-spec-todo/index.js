@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-// app.use(cors())
+app.use(cors())
 
 const routes = require('./src/control.js');
 
@@ -36,11 +36,11 @@ app.use(function (req, res, next) {
 
 app.get(['/', '/home'], (req, res) => {
     res.sendFile(
-        path.resolve(__dirname, '../openfin-todo/public/', 'todo.html')
+        path.resolve(__dirname, '../openfin-todo/public/', 'index.html')
     )
 });
 
-app.listen(8081, () => {
+app.listen(8080, () => {
     console.log("Server running on port 8080");
 });
 
