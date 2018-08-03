@@ -9,7 +9,6 @@ const app = new Vue({
             comment: '',
         },
         showModal: false
-        
     },
     methods: {
         addTodo: function () {
@@ -22,11 +21,15 @@ const app = new Vue({
               title: value,
               completed: false
             })
-            this.newTodo = ''
+            this.newTodo = '';
           },
-      
-          removeTodo: function (todo) {
-            this.todos.splice(this.todos.indexOf(todo), 1)
+          removeTodo: function(id, todo) {
+              axios.delete('http://localhost:8080/api/todo/delete/' + id)
+              .then(() => {
+                this.todos.splice(this.todos.indexOf(todo), 1)
+                console.log(id);
+              })
+              .catch(console.error);
           },
       
           editTodo: function (todo) {
@@ -42,21 +45,20 @@ const app = new Vue({
                     .catch(console.error)
             }, 800)
         },
-        create: function () {
+        create: function() {
             axios({
-                url: '/api/todo/create',
+                url: 'http://localhost:8080/api/todo/create',
                 method: 'POST',
                 data: {
                     title: this.newTodo.title,
                     comment: this.newTodo.comment,
                 }
             })
-                .then(res => {
-                    console.log(res.data);
-                    this.todos.push(res.data);
-
-                })
-                .catch(console.error)
+            .then(res => {
+                console.log(res.data);
+                this.todos.push(res.data);
+            })
+            .catch(console.error)
         }
     }
 })
