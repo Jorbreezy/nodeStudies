@@ -1,3 +1,4 @@
+
 .spinner {
   position: absolute;
   top: 48%;
@@ -110,9 +111,6 @@ body {
     padding: 12px 16px 12px 16px;
   }
 
- 
-
-
   .header {
     background-color: white;
     padding: 30px 40px;
@@ -193,15 +191,23 @@ body {
     padding: 12px 16px;
     font-size: 16px;
     cursor: pointer;
-    margin-left:1280px;
+   margin-left: 5px;
+} 
+input[type="checkbox"]{
+  width: 20px;
+  height:30px;
+  background-color:white;
+  border-radius: 25px;
+  border: 1px solid #555;
 }
-.switch {
+/* .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
 }
 .switch input {display:none;}
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -241,4 +247,4 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-}
+} */

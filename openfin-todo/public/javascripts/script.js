@@ -1,3 +1,4 @@
+
 const app = new Vue({
     el: '#app',
     data: {
@@ -8,6 +9,7 @@ const app = new Vue({
             comment: '',
         },
         showModal: false
+        
     },
     methods: {
         addTodo: function () {
@@ -60,22 +62,22 @@ const app = new Vue({
 })
 
 app.load();
-
 Vue.component('modal', {
     template: '#modal-template'
 })
 
-    // doneEdit: function  {
-    //   if (!this.editedTodo) {
-    //     return
-    //   }
-    //   this.editedTodo = null
-    //   todo.title = todo.title.trim()
-    //   if (!todo.title) {
-    //     this.removeTodo(todo)
-    //   }
 
- // Make Close Button
+//     doneEdit: function  {
+//       if (!this.editedTodo) {
+//         return
+//       }
+//       this.editedTodo = null
+//       todo.title = todo.title.trim()
+//       if (!todo.title) {
+//         this.removeTodo(todo)
+//       }
+
+//  Make Close Button
 //  function closeBtn(id) {
 //      let myNodelist = document.getElementsByTagName("#delete");
 //      let i;
@@ -118,17 +120,17 @@ Vue.component('modal', {
 //      }
 //  }
 
-
-
-// // Make Checked
-// function checked() {
-//     const list = document.querySelector('ul');
-//     list.addEventListener('click', function (ev) {
-//         if (ev.target.tagName === 'LI') {
-//             ev.target.classList.toggle('checked');
-//         }
-//     }, false);
-// }
+// $(document).ready(function(){
+//     function checked() {
+//         const list = document.querySelector('ul');
+//         list.addEventListener('click', function (ev) {
+//             if (ev.target.tagName === 'LI') {
+//                 ev.target.classList.toggle('checked');
+//             }
+//         }, false);
+//     }
+// });
+// Make Checked
 
 
 //  // New Item

@@ -10,6 +10,7 @@
   <link rel="icon" href="https://avatars0.githubusercontent.com/u/1569661?s=280&v=4">
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./stylesheets/todo.css">
 </head>
 
 <body>
@@ -22,7 +23,8 @@
         <div class="bounce3"></div>
       </div>
     </div>
-    <div id="myDIV" class="header">
+  
+     <div id="myDIV" class="header">
 
       <div class="jumbotron">
         <hr class="my-4">
@@ -39,15 +41,9 @@
           <center>
             <h3 class="count">Number Of Things To-Do: {{ todos.length }}</h3>
           </center>
-          <center>
-            <a href="#section5">
-            
-              <button class="btn btn-primary btn-lg">Scroll</button>
-            </a>
-          </center>
         </section>
         <div>
-            
+
           <section id="section5" class="demo">
             <input v-model='newTodo.title' placeholder="Title.." type="text" / id="myInput">
             <input v-model='newTodo.comment' placeholder="Comment.." type="text" / id="myComment">
@@ -59,13 +55,14 @@
 
     <div v-for='todo in todos'>
       <div id="box">
-          <label class="switch">
-              <input type="checkbox" @click="check" v-model="todo.completed">
-              <span class="slider round"></span>
-            </label>
-          <button class="destroy" @click="removeTodo(todo)"><i class="fa fa-trash"></i></button>
+
+          <input type="checkbox" />
+          
+         <button class="destroy" @click="removeTodo(todo)">
+          <i class="fa fa-trash"></i>
+        </button>
         <ul>
-            <li class="mess">{{ todo.title }}</li>
+          <li class="mess">{{ todo.title }}</li>
           <ul>
             <li class="mess">Time: {{ todo.time }}</li>
             <li class="place">Comment: {{ todo.comment }}</li>
@@ -73,17 +70,17 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div>  
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
     crossorigin="anonymous"></script>
-  <script src="javascripts/script.js" async></script>
+  <script src="javascripts/script.js" async></script> 
 
 </body>
 
