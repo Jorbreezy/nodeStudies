@@ -41,7 +41,7 @@
       <hr class="my-4">
       <section id="section04" class="demo">
         <center>
-          <h3 class="count">Number Of Things To-Do: {{ todos.length }}</h3>
+          <h3 class="count">Number Of Things on the To-Do: {{ todos.length }}</h3>
         </center>
       </section>
       <div>
@@ -54,14 +54,14 @@
       </div>
   </div>
 
-<<<<<<< HEAD
+
     <div v-for='todo in todos'>
       <div id="box">
           <input type="checkbox" />
          <button class="destroy" @click="removeTodo(todo)">
           <i class="fa fa-trash"></i>
         </button>
-=======
+
   <div v-for='todo in todos'>
     <div id="box">
 
@@ -72,7 +72,7 @@
       </button>
       <ul>
         <li class="mess">{{ todo.title }}</li>
->>>>>>> fb7c89907071d95be96e871a9002bfaa005100af
+
         <ul>
           <li class="mess">Time: {{ todo.time }}</li>
           <li class="place">Comment: {{ todo.comment }}</li>
