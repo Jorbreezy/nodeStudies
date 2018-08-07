@@ -14,7 +14,7 @@ const app = new Vue({
         addTodo: function () {
             var value = this.newTodo && this.newTodo.trim()
             if (!value) {
-              return
+              return 
             }
             this.todos.push({
               id: todoStorage.uid++,
@@ -43,6 +43,7 @@ const app = new Vue({
                         this.todos = res.data.collection
                     })
                     .catch(console.error)
+                    r3
             }, 800)
         },
         create: function() {
