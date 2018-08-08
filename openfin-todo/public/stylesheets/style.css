@@ -111,7 +111,11 @@
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
-  footer { background-color: #201f45; min-height:350px; font-family: 'Helvetica', serif; font-weight: 600;
+  
+  footer { 
+    background-color: #201f45; 
+   font-family: 'Muli', sans-serif; 
+   font-size: 25px;
   }
   .footerleft { margin-top:50px; padding:0 0px; 
     
@@ -143,7 +147,7 @@
   .footer-ul i { margin-right:10px;
     
   }
-  .footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#201f45; 
+  .footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color: white; 
     
   }
   
@@ -191,7 +195,7 @@
     float:left;  
   }
   
-   .copyright { min-height:40px; background-color:#201f45;
+   .copyright { min-height:40px; background-color:white;
      
    }
    .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;

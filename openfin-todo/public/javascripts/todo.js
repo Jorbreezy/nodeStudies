@@ -1,17 +1,17 @@
-$(document).ready(function(){
-   load();
-   checked();
+$(document).ready(function () {
+    load();
+    checked();
 });
 
-function load(){
+function load() {
     $.ajax({
-        url:"http://localhost:8080/api/todo/list",
-        method:"Get",
-        success: function(results){
+        url: "http://localhost:8080/api/todo/list",
+        method: "Get",
+        success: function (results) {
             //console.log(results);
 
             results.forEach((data) => {
-                if(data != null){
+                if (data != null) {
                     var item = document.createElement('li');
                     item.innerText = data.title;
 
@@ -21,9 +21,9 @@ function load(){
                     hideCloseBtn();
                 }
             });
-
+            
         },
-        error: function(err){
+        error: function (err) {
             console.log(err);
         }
     });
@@ -40,14 +40,14 @@ function closeBtn(id) {
     span.className = "close";
     span.appendChild(txt);
 
-    span.onclick = function(){
+    span.onclick = function () {
 
         console.log('REACHED');
 
         $.ajax({
-            url:'http://localhost:8080/api/todo/delete/' + id,
-            method:'DELETE',
-            success: function(msg){
+            url: 'http://localhost:8080/api/todo/delete/' + id,
+            method: 'DELETE',
+            success: function (msg) {
                 console.log('Deleted ' + id)
             }
         })
@@ -65,7 +65,7 @@ function closeBtn(id) {
 }
 
 // Hide Delete List
-function hideCloseBtn(){
+function hideCloseBtn() {
     const close = document.getElementsByClassName("close");
 
     for (i = 0; i < close.length; i++) {
@@ -86,25 +86,25 @@ function checked() {
 
 
 
-    $.ajax({
-        url:"http://localhost:8080/api/create",
-        method:"POST",
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            title: inputValue,
-            comment: "Im cool",
-            completed: false,
-            alias: inputValue
-        }),
-        success: function(results){
-            console.log(results);
-            $('ul').empty();
-            load();
-            checked();
-        },
-        error: function(err){
-            console.log(err);
-        }
-    });
+$.ajax({
+    url: "http://localhost:8080/api/create",
+    method: "POST",
+    dataType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify({
+        title: inputValue,
+        comment: "Im cool",
+        completed: false,
+        alias: inputValue
+    }),
+    success: function (results) {
+        console.log(results);
+        $('ul').empty();
+        load();
+        checked();
+    },
+    error: function (err) {
+        console.log(err);
+    }
+});
 
