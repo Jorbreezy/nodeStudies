@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Notification</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id='#app'>
+        <h4>Desktop Notification</h4>
+        <h3>Create new todo</h3>
+        <div>
+            <p style='text-align: right'>{{ time }}</p>
+            <p>{{ title }}</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                title: 'untitled',
+                time: new Date().toISOString()
+            }
+        })
+        function onNotificationMessage(message) {
+            message.title;
+        }
+    </script>
+</body>
+
+</html>
