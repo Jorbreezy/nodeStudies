@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div id='todo'>
+            <p></p>
+        </div>
+    </body>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        (new Vue({
+            data: {
+                todo: {}
+            },
+            methods: {
+                load: () => {
+                    fin.desktop.InterApplicationBus.subscribe("*", "todo", function (todo, uuid) {
+                        this.todo = todo
+                    });
+                },
+                /* in these two methods send maessage to the main application to edit and delete
+                the specfic todo in this child window. Instead of copying and pasting the code in
+                the main application */
+                delete: () => {},
+                edit: () => {}
+            }
+        })).load()
+    </script>
+</html>

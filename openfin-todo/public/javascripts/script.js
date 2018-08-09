@@ -3,47 +3,46 @@ const app = new Vue({
     el: '#app',
     data: {
         todos: [],
+        loaded: false,
         errorMessage: '',
+        showModal: false,
         newTodo: {
             title: '',
             comment: '',
+            create: false,
         },
-        showModal: false
+        openfin: {
+            isopenfin: fin !== undefined,
+            version: 'not openfin',
+        },
     },
     methods: {
-        addTodo: function () {
-            var value = this.newTodo && this.newTodo.trim()
-            if (!value) {
-              return
-            }
-            this.todos.push({
-              id: todoStorage.uid++,
-              title: value,
-              completed: false
-            })
-            this.newTodo = '';
-          },
-          removeTodo: function(id, todo) {
-              axios.delete('http://localhost:8080/api/todo/delete/' + id)
-              .then(() => {
-                this.todos.splice(this.todos.indexOf(todo), 1)
-                console.log(id);
-              })
-              .catch(console.error);
-          },
-      
-          editTodo: function (todo) {
+        removeTodo: function(id, todo) {
+            axios.delete('http://localhost:8080/api/todo/delete/' + id)
+                .then(() => {
+                    this.todos.splice(this.todos.indexOf(todo), 1)
+                })
+                .catch(console.error);
+        },
+        reloadApplication: () => {
+            return fin.desktop.Window.getCurrentWindow().reload(console.log, console.error)
+        },
+        editTodo: function (todo) {
             this.beforeEditCache = todo.title
             this.editedTodo = todo
-          },      
+        },      
         load: function () {
             setTimeout(() => {
                 axios.get('http://localhost:8080/api/todo/list')
-                    .then(res => {
-                        this.todos = res.data.collection
+                    .then(({ data }) => {
+                        this.loaded = true
+
+                        setTimeout(() => {
+                            this.todos = data.collection
+                        }, 1000)
                     })
                     .catch(console.error)
-            }, 800)
+            }, 3000)
         },
         create: function() {
             axios({
@@ -54,9 +53,25 @@ const app = new Vue({
                     comment: this.newTodo.comment,
                 }
             })
-            .then(res => {
-                console.log(res.data);
-                this.todos.push(res.data);
+            .then(({ data }) => {
+                this.newTodo.title = ''
+                this.newTodo.comment = ''
+                
+                this.todos.push(data);
+                
+                if (fin) {
+                    function openChildWindow() {
+                        // create a new child window and create a interapplication bus message to the new child window
+                    }
+
+                    new fin.desktop.Notification({
+                        url: "components/notification.html",
+                        message: data,
+                        onClick: () => {
+                            openChildWindow(data)
+                        }
+                    })
+                }
             })
             .catch(console.error)
         }
@@ -64,9 +79,6 @@ const app = new Vue({
 })
 
 app.load();
-Vue.component('modal', {
-    template: '#modal-template'
-})
 
 
 //     doneEdit: function  {
