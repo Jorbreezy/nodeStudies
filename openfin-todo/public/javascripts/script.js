@@ -12,7 +12,7 @@ const app = new Vue({
             create: false,
         },
         openfin: {
-            isopenfin: fin !== undefined,
+            isopenfin: Window.fin !== undefined,
             version: 'not openfin',
         },
     },
